@@ -46,7 +46,6 @@ class DB
     public function __destruct()
     {
         // Set the PDO object to null to close the connection
-        // http://www.php.net/manual/en/pdo.connections.php
         $this->pdo = null;
     }
 
@@ -60,7 +59,7 @@ class DB
      * */
     private function connect()
     {
-        $this->settings = parse_ini_file("settings.ini.php");
+        $this->settings = parse_ini_file("config.php");
         $dsn = 'mysql:hostname='.$this->settings['host'].';dbname='.$this->settings['dbname'];
         try {
             // Read settings from ini file, set UTF8

@@ -86,7 +86,7 @@ class ORM
             $sql = "UPDATE".$this->tbl." SET ".$fieldsVals." WHERE ".$this->pk."= :".$this->pk;
             if ($id === "0" && $this->vars[$this->pk] === "0") {
                 unset($this->vars[$this->pk]);
-                $sql="UPDATE ".$this->table." SET ".$fieldsVals;
+                $sql="UPDATE ".$this->tbl." SET ".$fieldsVals;
             }
             return $this->exec($sql);
         }
@@ -210,6 +210,23 @@ class ORM
             return $this->db->single("SELECT count(".$field.") FROM ".$this->tbl);
         }
     }
-    
+
+
+    /**/
+    private function exec($sql, $array = null)
+    {
+        if ($array !== null) {
+            // Get result with $array as parameters
+            $res = $this->db->query($sql, $array);
+        } else {
+            // Get result with $this->vars as parameters
+            $res = $this->db->query($sql, $this->vars);
+        }
+
+        //  Empty bindings
+        $this->vars = [];
+
+        return $res;
+    }
 }
 

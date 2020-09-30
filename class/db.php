@@ -248,7 +248,6 @@ class DB
     {
         $this->init($query, $params);
         $Columns = $this->stmt->fetchAll(\PDO::FETCH_NUM);
-
         $column = null;
         foreach ($Columns as $cells) {
             $column[] = $cells[0];

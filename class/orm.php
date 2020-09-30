@@ -160,5 +160,56 @@ class ORM
         }
         return $this->exec($sql);
     }
+
+
+    /**/
+    public function all()
+    {
+        return $this->db->query("SELECT * FROM ".$this->tbl);
+    }
+
+
+    /**/
+    public function min($field)
+    {
+        if ($field) {
+            return $this->db->single("SELECT min(".$field.") FROM ".$this->tbl);
+        }
+    }
+
+
+    /**/
+    public function max($field)
+    {
+        if ($field){
+            return $this->db->single("SELECT max(".$field.") FROM ".$this->tbl);
+        }
+    }
+
+    /**/
+    public function avg($field)
+    {
+        if ($field){
+            return $this->db->single("SELECT avg(".$field.") FROM ".$this->tbl);
+        }
+    }
+
+    /**/
+    public function sum($field)
+    {
+        if ($field){
+            return $this->db->single("SELECT sum(".$field.") FROM ".$this->tbl);
+        }
+    }
+
+
+    /**/
+    public function count($field)
+    {
+        if ($field){
+            return $this->db->single("SELECT count(".$field.") FROM ".$this->tbl);
+        }
+    }
+    
 }
 
